@@ -22,7 +22,9 @@ VALUES
 SELECT organization_id, name, description, contact_email, logo_filename
 FROM public.organization;
 
-
+-- ========================================
+-- projects Table
+-- ========================================
 CREATE TABLE projects (
     project_id SERIAL PRIMARY KEY,
     organization_id INT NOT NULL,
@@ -37,7 +39,9 @@ CREATE TABLE projects (
         ON DELETE CASCADE
 );
 
-
+-- ========================================
+-- Insert sample data: projects
+-- ========================================
 INSERT INTO projects (organization_id, title, description, location, project_date)
 VALUES
 (1,'Community Food Drive','Collect and distribute food donations.','New York','2026-06-15'),
@@ -49,13 +53,17 @@ FROM public.projects sp
 INNER JOIN public.organization o 
 on o.organization_id = sp.organization_id;
 
-
+-- ========================================
+-- Insert sample data: category
+-- ========================================
 CREATE TABLE category (
     category_id SERIAL PRIMARY KEY,
     category_name VARCHAR(100) NOT NULL UNIQUE
 );
 
-
+-- ========================================
+-- Insert sample data: category
+-- ========================================
 INSERT INTO category (category_name)
 VALUES
 ('Environmental'),
@@ -63,6 +71,9 @@ VALUES
 ('Community Service'),
 ('Health and Wellness');
 
+-- ========================================
+-- Insert sample data: project_category
+-- ========================================
 CREATE TABLE project_category (
     project_id INT NOT NULL,
     category_id INT NOT NULL,
@@ -78,6 +89,9 @@ CREATE TABLE project_category (
         ON DELETE CASCADE
 );
 
+-- ========================================
+-- Insert sample data: project_category
+-- ========================================
 INSERT INTO project_category
 (project_id, category_id)
 VALUES

@@ -114,6 +114,20 @@ VALUES
 (3,1),
 (3,2);
 
+INSERT INTO project_category
+(project_id, category_id)
+VALUES
+(4,3),
+(5,2),
+(6,2),
+(7,1),
+(8,2),
+(9,3),
+(10,4),
+(11,4),
+(12,2),
+(13,4);
+
 SELECT sp.project_id, sp.title, c.category_name
 FROM projects sp
 JOIN project_category pc
@@ -124,7 +138,7 @@ ORDER BY sp.project_id;
 
 
 -- ========================================
--- Select num of projects
+-- Select LIMIT num of projects
 -- ========================================
 SELECT 
 	sp.project_id,
@@ -141,6 +155,10 @@ WHERE sp.project_date > current_date
 ORDER BY sp.project_date asc
 LIMIT 5;
 
+
+-- ========================================
+-- Select project by ID
+-- ========================================
 SELECT 
 	sp.project_id,
 	sp.title,
@@ -154,4 +172,38 @@ INNER JOIN public.organization o
 on o.organization_id = sp.organization_id
 WHERE sp.project_id = 8;
 
+
+
+-- ========================================
+-- Recuperar una sola categoría por su ID.
+-- Recuperar todas las categorías de un proyecto de servicio determinado.
+-- Recuperar todos los proyectos de servicio para una categoría determinada.
+-- ========================================
+
+SELECT category_id,category_name
+FROM category c
+WHERE category_id = 1;
+
+SELECT sp.project_id, sp.title, c.category_name
+FROM projects sp
+JOIN project_category pc
+ON sp.project_id = pc.project_id
+JOIN category c
+ON pc.category_id = c.category_id
+WHERE sp.project_id = 4;
+
+SELECT 	
+	c.category_id, c.category_name,
+	sp.project_id,
+	sp.title,
+	sp.description,
+	sp.project_date,
+	sp.location,
+	sp.organization_id
+FROM projects sp
+JOIN project_category pc
+ON sp.project_id = pc.project_id
+JOIN category c
+ON pc.category_id = c.category_id
+WHERE pc.category_id = 3;
 

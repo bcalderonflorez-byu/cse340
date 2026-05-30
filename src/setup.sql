@@ -48,6 +48,19 @@ VALUES
 (2,'Neighborhood House Build','Volunteer construction project.','Chicago','2026-07-10'),
 (3,'School Supply Campaign','Provide educational materials for children.','Washington','2026-08-05');
 
+INSERT INTO projects (organization_id,title,description,location,project_date)
+VALUES
+(1,'Blood Donation Drive','Community blood donation event to support local hospitals.','Boston','2026-09-12'),
+(2,'Community Garden Initiative','Volunteers create and maintain a neighborhood garden.','Denver','2026-09-20'),
+(3,'Back-to-School Backpack Giveaway','Distribute backpacks and school supplies to students.','Atlanta','2026-08-15'),
+(1,'Senior Center Support Day','Assist senior citizens with activities and facility improvements.','Philadelphia','2026-10-03'),
+(2,'Park Cleanup Project','Remove litter and improve local park facilities.','Seattle','2026-07-25'),
+(3,'Youth Mentorship Workshop','Provide career guidance and mentoring for teenagers.','Dallas','2026-11-07'),
+(1,'Holiday Food Basket Program','Prepare and distribute food baskets to families in need.','Miami','2026-12-05'),
+(2,'Home Repair Assistance','Help elderly homeowners with minor repairs and maintenance.','Phoenix','2026-08-29'),
+(3,'Community Health Fair','Offer free health screenings and wellness education.','Los Angeles','2026-10-17'),
+(1,'Literacy Tutoring Program','Provide reading and writing support for children.','San Diego','2026-09-05');
+
 SELECT sp.project_id, sp.organization_id, o.name, sp.title, sp.description, sp.location, sp.project_date
 FROM public.projects sp
 INNER JOIN public.organization o 
@@ -108,3 +121,37 @@ ON sp.project_id = pc.project_id
 JOIN category c
 ON pc.category_id = c.category_id
 ORDER BY sp.project_id;
+
+
+-- ========================================
+-- Select num of projects
+-- ========================================
+SELECT 
+	sp.project_id,
+	sp.title,
+	sp.description,
+	sp.project_date,
+	sp.location,
+	sp.organization_id,
+	o.name
+FROM public.projects sp
+INNER JOIN public.organization o 
+on o.organization_id = sp.organization_id
+WHERE sp.project_date > current_date 
+ORDER BY sp.project_date asc
+LIMIT 5;
+
+SELECT 
+	sp.project_id,
+	sp.title,
+	sp.description,
+	sp.project_date,
+	sp.location,
+	sp.organization_id,
+	o.name
+FROM public.projects sp
+INNER JOIN public.organization o 
+on o.organization_id = sp.organization_id
+WHERE sp.project_id = 8;
+
+

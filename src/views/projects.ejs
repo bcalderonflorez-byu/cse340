@@ -7,14 +7,20 @@
 
             <% projects.forEach(projects => { %>                
                 <li><strong><%= new Date(projects.project_date)
-      .toLocaleDateString(
-          'en-US',
-          {
-              year:'numeric',
-              month:'long',
-              day:'numeric'
-          }
-      ) %></strong>: <%= projects.title %> (<%= projects.name %>)</li>
+                            .toLocaleDateString(
+                                'en-US',
+                                {
+                                    year:'numeric',
+                                    month:'long',
+                                    day:'numeric'
+                                }
+                            ) %>
+                    </strong>: 
+                    <a href="/project/<%= projects.project_id %>"><%= projects.title %></a>    
+                    ( <a href="/organization/<%= projects.organization_id %>"><%= projects.name %></a> )
+                </li>
+      
+            
             <% }); %>
         </ul>
     </main>

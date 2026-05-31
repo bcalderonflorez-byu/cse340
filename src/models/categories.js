@@ -2,7 +2,7 @@ import db from './db.js'
 
 const getAllCategories = async() => {
     const query = `
-                    SELECT c.category_name
+                    SELECT c.category_name, c.category_id
                     FROM category c;
     `;
 

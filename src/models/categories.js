@@ -27,7 +27,7 @@ const getCategoryDetails = async (categoryId) => {
 
 const getCategoriesByProject = async (projectId) => {
       const query = `
-        SELECT sp.project_id, sp.title, c.category_name
+        SELECT sp.project_id, sp.title, c.category_name, c.category_id
         FROM projects sp
         JOIN project_category pc
         ON sp.project_id = pc.project_id

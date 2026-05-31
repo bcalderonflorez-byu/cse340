@@ -184,7 +184,7 @@ SELECT category_id,category_name
 FROM category c
 WHERE category_id = 1;
 
-SELECT sp.project_id, sp.title, c.category_name
+SELECT sp.project_id, sp.title, c.category_name, c.category_id
 FROM projects sp
 JOIN project_category pc
 ON sp.project_id = pc.project_id
@@ -193,7 +193,7 @@ ON pc.category_id = c.category_id
 WHERE sp.project_id = 4;
 
 SELECT 	
-	c.category_id, c.category_name,
+	c.category_id, c.category_name, c.category_id
 	sp.project_id,
 	sp.title,
 	sp.description,

@@ -116,14 +116,26 @@ const processEditCategoryForm = async (req, res) => {
     console.log('req.params:', req.params);
 
     const categoryId = req.params.id;
-    const { category_name } = req.body;
+    const { category_name } = req.body;    
 
-    await updateCategory(categoryId, category_name);
-    
-    // Set a success flash message
-    req.flash('success', 'Category updated successfully!');
+    try {
 
-    res.redirect(`/category/${categoryId}`);
+        // update the category in the database
+        await updateCategory(categoryId, category_name);
+        // Set a success flash message
+        req.flash('success', 'Category updated successfully!');
+        res.redirect(`/category/${categoryId}`);
+
+    } catch (error) {
+        console.error('Error updating category:', error);
+        req.flash('error', 'There was an database error updating the category. Please check if category name already exist.');
+        res.redirect('/edit-category/' + req.params.id);
+    }
+
+
+
+
+
 };
 
 // Export any controller functions

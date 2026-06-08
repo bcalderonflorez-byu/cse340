@@ -193,7 +193,7 @@ ON pc.category_id = c.category_id
 WHERE sp.project_id = 4;
 
 SELECT 	
-	c.category_id, c.category_name, c.category_id
+	c.category_id, c.category_name, c.category_id,
 	sp.project_id,
 	sp.title,
 	sp.description,
@@ -205,5 +205,11 @@ JOIN project_category pc
 ON sp.project_id = pc.project_id
 JOIN category c
 ON pc.category_id = c.category_id
-WHERE pc.category_id = 3;
+WHERE pc.category_id = 1;
+
+
+SELECT * FROM organization;
+DELETE FROM ORGANIZATION WHERE NAME LIKE 'BCaldero%';
+DELETE FROM ORGANIZATION WHERE NAME LIKE 'cssssssssssss%';
+COMMIT;
 

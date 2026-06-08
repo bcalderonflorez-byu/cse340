@@ -70,7 +70,8 @@ const processNewOrganizationForm = async (req, res) => {
     res.redirect(`/organization/${organizationId}`);
 };
 
-const showEditOrganizationForm = async (req, res) => {
+const showEditOrganizationForm = async (req, res) => {    
+    console.log('req.params:', req.params);
     const organizationId = req.params.id;
     const organizationDetails = await getOrganizationDetails(organizationId);
 
